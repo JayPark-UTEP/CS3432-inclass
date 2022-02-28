@@ -23,10 +23,11 @@ void sort(int v[], size_t n)
 
 int main(int argc, char **argv)
 {
-
+    clock_t t;
+    
     int print;
     size_t i, n;
-    int values[1000000] = {1, 5, 12, 02 ,52 ,56};
+    int values[1000000];
 
     if (argc != 3) {
         printf("Usage: %s <n> <pr> where <n> is the number of integers to sort and <pr> is 1 to print and 0 otherwise\n", argv[0]);
@@ -40,6 +41,9 @@ int main(int argc, char **argv)
         if (print)
             printf("%d\n", values[i]);
     }
+
+    t = clock();
+
     sort(values, n);
     if (print) {
         printf("\nsorted:\n");
@@ -48,6 +52,12 @@ int main(int argc, char **argv)
     }
     else 
         printf("values[0]: %d\n", values[0]);
-    // printf("It complied");
+
+    t = clock() - t;
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
+
+    printf("\nQsort took %f seconds to execute \n", time_taken);
+
+
     return(0);
 }
